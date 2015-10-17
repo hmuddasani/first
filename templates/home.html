@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{{ block.super }}
+{% block head_title %} Welcome| {% endblock %}
+<!-- Main component for a primary marketing message or call to action -->
+{% block jumbotron %}
+{% if not request.user.is_authenticated %}
+      <div class="jumbotron">
+	  <div class="container">
+	  <div class="row">
+	    <div class= "col-sm-6">
+         <h1>Try Django 1.8 tutorial</h1>
+         <p>The MVP Landing Project is designed to get your project started. The goal is to help launch as soon as possible with the least
+		 amount of investment, time and money</p>
+         <p>
+           <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Join Us &raquo;</a>
+         </p></div>
+		 <div class = "col-sm-6"> </div>
+		 <iframe width="560" height="315" src="https://www.youtube.com/embed/2uLYO1LUf6Q" frameborder="0" allowfullscreen></iframe>
+      </div>
+	  </div>
+	  </div>	  
+{% endif %}
+ {% endblock %}
+
+
+{% block content %}
+ {% if request.user.is_authenticated %}
+   <h1> You are logged in !</h1>
+   {% if request.user.is_staff %}
+      <h1> Welcome Staff! </h1>
+	  {% for instance in queryset %}
+	    <table style= "width:100%" border = "1">
+		<tr>
+		<td> {{ forloop.counter }}</td>
+		<td>{{ instance.name }} </td>
+		<td>{{ instance.email }}</td>
+		<td>{{ instance.datecreated|timesince }}</td>
+		<td>{{ instance.birthdate }}</td>
+		</tr>
+		</table>		
+	  {% endfor %}
+   {% endif %}
+ {% else %}
+	  <div class="row">
+	  <div class="col-xs-6 col-md-3 pull-right" >
+	   <p class='lead'> {{ title }} </p>
+	 <form method = "POST" action=''>{% csrf_token %}
+	   {{ form|crispy }}
+	   <input class = "btn btn-primary" type = "Submit" value= "SignUp">
+	  </div>
+	  </input
+	   </form>
+	   <div class= "col-sm-3">
+		<p class="lead text-align-center"> Build with Django </br>
+		<img src = '{% static "img/django-logo.png" %}' style="height:100px" class='img-responsive' > </img>
+		</p>
+	   </div>
+	   <div class= "col-sm-3 ">
+		<p class= "lead text-align-center"> Created for starters</br></br>
+		<span class="fa-stack fa-lg fa-3x">
+		<i class="fa fa-circle-o-notch fa-stack-2x fa-lg"></i>
+		 <i class="fa fa-twitter fa-stack-1x  "></i>
+		</span>
+		</p>
+	   </div>
+	   <div class= "col-sm-3 col-xs-6 col-offset-3">
+		<p class="lead text-align-center"> Always Open Source </br></br>
+		 <span class="fa-stack fa-lg fa-3x">
+		<i class="fa fa-circle-o-notch fa-stack-2x fa-lg"></i>
+		 <i class="fa fa-twitter fa-stack-1x  "></i>
+		</span>
+		</p>
+	   </div>
+	 </div>
+ {% endif %}
+{% endblock %}
+
+
+
+{% block footer %}
+<!--<h1>&copy;</h1>-->
+{% endblock %}

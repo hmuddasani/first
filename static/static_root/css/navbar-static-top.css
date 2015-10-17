@@ -1,0 +1,32 @@
+body {
+  min-height: 1000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 1px;
+  background-color: #266122;
+  border-color: black;
+  }
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #999;
+}
+
+.navbar-toggle {
+  border-color: transparent !important;
+}
+
+.navbar-toggle:hover {
+	background-color: #1A5F23 !important;
+}
+
+.navbar-toggle {
+	background-color: #0E3D14 !important;
+}
+
+
+.jumbotron{
+  color: #fff; 
+ background-color: #266122; 
+  }
+ 
